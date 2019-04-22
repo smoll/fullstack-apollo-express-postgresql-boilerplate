@@ -1,0 +1,26 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: yarn start
+    volumes:
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    ports:
+      - "3002:3000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://graphql:s0me-p4sswd@postgres/mydatabase
+      # DATABASE: mydatabase
+      # DATABASE_USER: graphql
+      # DATABASE_PASSWORD: s0me-p4sswd
+      SECRET: asdlplplfwfwefwekwself.2342.dawasdq
+
+  postgres:
+    image: postgres:10.3-alpine
+    environment:
+      POSTGRES_USER: graphql
+      POSTGRES_PASSWORD: s0me-p4sswd
+      POSTGRES_DB: mydatabase
+      # POSTGRES_PORT: 5432
